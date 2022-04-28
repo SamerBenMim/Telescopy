@@ -17,6 +17,7 @@ exports.getAllTelescops = catchAsync(async (req,res,next)=>{
     const features = new APIFeatures(Telescop.find({deleted:false}),req.query)
     .sort()
     .filter()
+    .paginate()
 
     const telescops = await features.query
     res.status(200).json({
