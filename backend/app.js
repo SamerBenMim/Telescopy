@@ -4,13 +4,12 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const app = express(); 
 const morgan = require('morgan')
+const globalErrorHandler = require("./Middlware/ErrorHandler")
+
 // const AppError = require("./Utils/appError")
 const TelescopRouter = require('./Routes/TelescopRoute')
-// const UserRouter = require('./Routes/UserRoute')
-// const ReviewRouter = require('./Routes/reviewRoute')
-// const globalErrorHandler = require("./Controllers/errorController")
 
-//GLOBAL MIDDLEWARES
+
 
 app.use(helmet())
 
@@ -18,14 +17,7 @@ app.use(helmet())
 if( (process.env.NODE_ENV==='development') ) app.use(morgan('dev'))
 
 
-//limit reqs from same api
-// const limiter = rateLimit({
-    //     max:100,                    //ratelimit is a fn that takes an ibject of options
-    //     windowMs:60*60*1000,  // allow 100 req from 1 ip in 1h
-    //     message:'Too many requests from this IP,please try again in an hour!'
-    // })
-    
-    //app.use(limiter);
+
     
     
     //////body Parser
@@ -54,7 +46,8 @@ if( (process.env.NODE_ENV==='development') ) app.use(morgan('dev'))
         })
         
 // app.use(globalErrorHandler)
-    module.exports = app;
+app.use(globalErrorHandler)
+module.exports = app;
 
 
     
