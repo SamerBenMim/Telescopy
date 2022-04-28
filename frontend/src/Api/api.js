@@ -5,7 +5,7 @@ export const GetTelescops = async() => {
     console.log("eeeeeezzzzzzzzzzzzzzzzzzzzzzzzzzzzzeee")
     return await axios.get(`${api}/telescops`)
         .then(res => {
-            
+            console.log("res",res)
             if (res.data.status === 'success') {
                
                 return true
