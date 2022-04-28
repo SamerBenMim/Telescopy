@@ -9,8 +9,50 @@ import arrow from '../../assets/left-arrow.png'
 const Main = () => {
   const [telescops, setTelescops] = useState(null)
   const [page, setPage] = useState(1)
-  const [nombreProduits, setNombreProduits] = useState(1000000000)
+  const [nombreProduits, setNombreProduits] = useState(0)
   const [sort, setSort] = useState(0)
+  const [image, setImage] = useState("https://pngimg.com/uploads/telescope/telescope_PNG54.png")
+  const [name, setName] = useState("")
+  const [price, setPrice] = useState(0)
+  const [quantity, setQuantity] = useState(0)
+  const [err, setErr] = useState(false)
+  const addTelescop = (e)=>{
+    e.preventDefault();
+    axios.post(`${api}/telescops`,{name,quantity,image,price})
+    .then(res => {
+      if (res.data.status === 'success') { 
+        setErr(false)
+        setNombreProduits(nombreProduits+1)
+      }
+      else{
+        setErr(true)
+      }
+    })
+    .catch(err => {
+      setErr(true)
+      console.log(err)
+      return false;
+    });
+  }
+
+
+  const updateTelescop = (id,name,quantity,price)=>{
+    axios.patch(`${api}/telescops/${id}`,{name,quantity,image,price})
+    .then(res => {
+      if (res.data.status === 'success') { 
+        setErr(false)
+      }
+      else{
+        setErr(true)
+      }
+    })
+    .catch(err => {
+      setErr(true)
+      console.log(err)
+      return false;
+    });
+  }
+
 
   const GetTelescops = ()=>{
     console.log(sort)
@@ -55,18 +97,23 @@ const Main = () => {
   var products = []
   useEffect( () => {
      GetTelescops()
-  }, [page,sort,nombreProduits])
+  }, [page,sort,nombreProduits,err])
 
-  if(!telescops) return <h1>jjjjjjjjjjjjjjjj</h1>
+  if(!telescops) return true
+  // return <Loader/>
+
   else return (
     <div className={style.container} >
       <div className={style.features}>
+      <div style={{color:"black",marginRight:'60px'}}> NUMBER OF TELESCOPS :  <span style={{fontSize:"20px",fontWeight:"500"}}>{nombreProduits}  </span> </div>
+
+        <div style={{color:"black",marginRight:'20px'}}> SORT TELESCOPS </div>
       <img
       onClick={()=>{
         (sort==0)?setSort(1): setSort(-1*sort)
       }}
        src="https://cdn-icons-png.flaticon.com/512/159/159800.png" style={{width:"40px",height:"30px" , cursor: 'pointer'}} alt="sort"  />
-      {nombreProduits}
+    
       </div>
 
     <div className={style.wrap}>
@@ -75,7 +122,7 @@ const Main = () => {
 
 
 
-    {(telescops.length<4)&& <Cards   deleteTelescop={deleteTelescop}  key = {telescops[0]+1} prod1 = {telescops[0]} prod2 = {telescops[1]} prod3 = {telescops[2]} prod4 = {telescops[3]}   />
+    {(telescops.length<4)&& <Cards  updateTelescop={updateTelescop} deleteTelescop={deleteTelescop}  key = {telescops[0]+1} prod1 = {telescops[0]} prod2 = {telescops[1]} prod3 = {telescops[2]} prod4 = {telescops[3]}   />
 
     }
 
@@ -92,7 +139,7 @@ const Main = () => {
       const p3 = products[2];
       const p4 = products[3];
       products = []
-      return <Cards  deleteTelescop={deleteTelescop} key = {p1.name} prod1 = {p1} prod2 = {p2} prod3 = {p3} prod4 = {p4}   />
+      return <Cards updateTelescop={updateTelescop}  deleteTelescop={deleteTelescop} key = {p1.name} prod1 = {p1} prod2 = {p2} prod3 = {p3} prod4 = {p4}   />
     }
    
 
@@ -100,9 +147,9 @@ const Main = () => {
 
 }  
 
-{(telescops.length%4 ==1 && telescops.length>4 )&& <Cards deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]}    />}
-{(telescops.length%4 ==2 && telescops.length>4 )&& <Cards deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]}  prod2 = {telescops[telescops.length-3]}   />}
-{(telescops.length%4 ==3 && telescops.length>4 )&& <Cards deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]} prod2 = {telescops[telescops.length-3]} prod3 = {telescops[telescops.length-2]}    />}
+{(telescops.length%4 ==1 && telescops.length>4 )&& <Cards updateTelescop={updateTelescop} deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]}    />}
+{(telescops.length%4 ==2 && telescops.length>4 )&& <Cards updateTelescop={updateTelescop} deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]}  prod2 = {telescops[telescops.length-3]}   />}
+{(telescops.length%4 ==3 && telescops.length>4 )&& <Cards  updateTelescop={updateTelescop}deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]} prod2 = {telescops[telescops.length-3]} prod3 = {telescops[telescops.length-2]}    />}
             </div>
 
             <div className={style.pagination}>
@@ -124,6 +171,44 @@ const Main = () => {
             <img style ={{transform: 'scaleX(-1)'}}src={arrow} alt="right-arrow" /></span>
             </div>
         </div>
+
+  <div className={style.add}> 
+    <h1> Add Telesocp</h1>
+    <br />
+    <div className={style.card}>
+      <form className={style.cardContainer} style={{padding:0}} onSubmit={addTelescop}>
+        <div className={style.cardContainer} style={{padding:"40px" , display:"flex" , justifyContent:"center" , alignItems:'center',flexDirection:"column"}}>
+            <button type='submit' style={{border:"none"}}>
+            <img  style={{width:"70px" , cursor:"pointer"}} src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-add-basic-ui-elements-flatart-icons-outline-flatarticons-1.png"alt="" />
+            </button>
+            <div>add</div>
+          <div className={style.image}  >
+          <input type="text" onChange={e=>{setImage(e.target.value)}} placeholder='Picture url '/>
+          </div>
+          <div className={style.details}>
+              <div className={style.wrap}>
+                <div className={style.productName}>
+                <input onChange={e=>{setName(e.target.value)}} placeholder="Name (required)" value={name} required={  true}/>
+                {err&&<div style={{color:"red"}}> user already exists</div>}
+                </div>
+                <div className={style.price}>
+                        <input placeholder="Price $" type="number" onChange={e=>{if(e.target.value>=0)setPrice(e.target.value)}} value={price}/>
+                </div>
+              </div>
+          
+             <div className={style.stock}>
+             <input placeholder="Quantity" type="number" onChange={e=>{if(e.target.value>=0)setQuantity(e.target.value)}} value={quantity}/>
+             </div>
+
+          </div>
+        </div>
+    </form>   
+
+    </div> 
+    </div>
+
+
+
     </div>
   )
 }

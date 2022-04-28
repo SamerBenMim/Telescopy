@@ -43,3 +43,45 @@
     }
 
    }
+   .card span{
+       font-weight: 800;
+       font-size: 20px;
+       color: black;
+       cursor: pointer;
+   }
+   .wrap input{
+    background-color: transparent;
+        border:  none;
+width: 130px;
+    }
+    .wrap input:focus{
+        background-color: transparent;
+        text-decoration: none;
+        border:  none;
+        
+        }
+        .wrap input:focus-visible{
+            background-color: transparent;
+            text-decoration: none;
+            border:  none;
+            outline-width: 0;
+            
+            }
+            .stock input{
+                background-color: transparent;
+                    border:  none;
+            width: 130px;
+                }
+                .stock input:focus{
+                    background-color: transparent;
+                    text-decoration: none;
+                    border:  none;
+                    
+                    }
+                    .stock input:focus-visible{
+                        background-color: transparent;
+                        text-decoration: none;
+                        border:  none;
+                        outline-width: 0;
+                        
+                        }

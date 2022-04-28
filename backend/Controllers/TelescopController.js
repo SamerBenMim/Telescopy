@@ -44,7 +44,7 @@ exports.getTelescopById =catchAsync( async (req,res,next)=>{
 )
 //UPDATE (methode Patch)
 exports.updateTelescop = catchAsync(async (req,res,next)=>{
-    var updatedTelescop = await Telescop.findOneAndUpdate( {_id:req.params.id , deleted:false} ,req.body, { new: true, runValidators: true }) //new return the updated obj 
+    var updatedTelescop = await Telescop.findOneAndUpdate( {_id:req.params.id , deleted:false} ,req.body, { new: true, runValidators: false }) //new return the updated obj 
     if(!updatedTelescop) return next(new AppError('no document found with that ID',404))
 
     res.status(200).json({
