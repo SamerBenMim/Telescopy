@@ -4,7 +4,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const app = express(); 
 const morgan = require('morgan')
-const globalErrorHandler = require("./Middlware/ErrorHandlerasync")
+const globalErrorHandler = require("./Middlware/ErrorHandler")
 const TelescopRouter = require('./Routes/TelescopRoute')
 
 

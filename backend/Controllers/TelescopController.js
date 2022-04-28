@@ -1,7 +1,7 @@
 const Telescop = require("../Models/TelescopModel")
 const catchAsync = require("./../Utils/catchAsync")
 const AppError = require("../Utils/appError")
-
+const APIFeatures = require("../Utils/ApiFeatures")
 /* HTTP Methods pour un Restful Api*/ 
 
 //CREATE (methode Post)
@@ -14,7 +14,10 @@ exports.addTelescop =  catchAsync( async(req,res,next)=>{
 })
 //READ (methode Get)
 exports.getAllTelescops = catchAsync(async (req,res,next)=>{
-    const telescops = await Telescop.find({deleted:false});
+    const features = new APIFeatures(Telescop.find({deleted:false}),req.query)
+    .sort()
+
+    const telescops = await features.query
     res.status(200).json({
         status :'success',
         results: telescops.length,
