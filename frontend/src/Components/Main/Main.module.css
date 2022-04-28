@@ -1,0 +1,16 @@
+.wrap{
+    margin: 10vw;
+}
+
+
+@media only screen and (max-width: 800px) {
+ 
+    .card{
+
+        width: 100%;
+    }
+    .wrap{
+        margin: 5px;
+    }
+
+   }
