@@ -18,8 +18,10 @@ const TelescopSchema = new mongoose.Schema({
         type :Number,
         required : [true,"a telescop should have a price"]
     },
+    image :{
+        type :String,
+    },
 
-    images:String,
 
     deleted :{
         type : Boolean,

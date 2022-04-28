@@ -14,6 +14,8 @@ exports.addTelescop =  catchAsync( async(req,res,next)=>{
 })
 //READ (methode Get)
 exports.getAllTelescops = catchAsync(async (req,res,next)=>{
+    const totalNumber = await (await Telescop.find({deleted:false})).length
+    console.log(totalNumber)
     const features = new APIFeatures(Telescop.find({deleted:false}),req.query)
     .sort()
     .filter()
@@ -23,6 +25,7 @@ exports.getAllTelescops = catchAsync(async (req,res,next)=>{
     res.status(200).json({
         status :'success',
         results: telescops.length,
+        number:totalNumber,
         data:{
          telescops
         }

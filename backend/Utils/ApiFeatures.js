@@ -7,7 +7,7 @@
                 if(this.queryString.sort ){
 
                     const sortBy = this.queryString.sort
-                    if(this.queryString.decreasing) this.query=this.query.sort("-"+sortBy)
+                    if(this.queryString.decreasing) {this.query=this.query.sort("-"+sortBy); console.log("meeeeeeeee")}
                     else this.query=this.query.sort(sortBy)
                 }
                
@@ -23,7 +23,7 @@
             }
             paginate(){
                 const page=this.queryString.page*1 || 1
-                const limit=this.queryString.limit*1 || 10 
+                const limit=this.queryString.limit*1 || 12 
                 const skip =limit*(page-1)
                 this.query = this.query.skip(skip).limit(limit);
                 return this
