@@ -14,21 +14,31 @@ exports.addTelescop =  catchAsync( async(req,res,next)=>{
 })
 //READ (methode Get)
 exports.getAllTelescops = catchAsync(async (req,res,next)=>{
-    const totalNumber = await (await Telescop.find({deleted:false})).length
-    const features = new APIFeatures(Telescop.find({deleted:false}),req.query)
-    .sort()
-    .filter()
-    .paginate()
+    const number =  await Telescop.find({deleted:false}).count()
+//
 
+    if(req.query.name){
+    var features = new APIFeatures(Telescop.find({deleted:false , name:new RegExp('.*' + req.query.name + '.*') }),req.query)
+    .sort()
+    .paginate()
+}
+    else{
+        var features = new APIFeatures(Telescop.find({deleted:false}),req.query)
+        .sort()
+        .filter()
+        .paginate()  
+    }
     const telescops = await features.query
+
     res.status(200).json({
         status :'success',
         results: telescops.length,
-        number:totalNumber,
+        number,
         data:{
          telescops
         }
-})
+    })
+
 })
 
 exports.getTelescopById =catchAsync( async (req,res,next)=>{ 

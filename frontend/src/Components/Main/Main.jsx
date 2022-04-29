@@ -15,6 +15,9 @@ const Main = () => {
   const [price, setPrice] = useState(0)
   const [quantity, setQuantity] = useState(0)
   const [err, setErr] = useState(false)
+  const [search, setSearch] = useState("")
+
+//add telescop
   const addTelescop = (e)=>{
     e.preventDefault();
     axios.post(`${api}/telescops`,{name,quantity,image,price})
@@ -34,7 +37,7 @@ const Main = () => {
     });
   }
 
-
+//upadte telescop
   const updateTelescop = (id,name,quantity,price)=>{
     axios.patch(`${api}/telescops/${id}`,{name,quantity,price})
     .then(res => {
@@ -55,13 +58,14 @@ const Main = () => {
 
 
   const GetTelescops = ()=>{
-    var query = `/telescops?page=${page}`
+    var query = `/telescops?page=${page}${(search)?"&name="+search:''}`
     if (sort==1){
-      query =`/telescops?page=${page}&sort=price`
-
+      query =`/telescops?page=${page}&sort=price${(search)?"&name="+search:""}`
     }else if(sort==-1) {
-      query =`/telescops?page=${page}&sort=price&decreasing=true`
+      query =`/telescops?page=${page}&sort=price&decreasing=true${(search)?"&name="+search:""}`
     }
+    console.log(query)
+
     axios.get(`${api}${query}`)
     .then(res => {
       if (res.data.status === 'success') { 
@@ -93,7 +97,7 @@ const Main = () => {
   var products = []
   useEffect( () => {
      GetTelescops()
-  }, [page,sort,nombreProduits,err])
+  }, [page,sort,nombreProduits,err,search])
 
   if(!telescops) return <div style={{width : "100%" , textAlign:"center"}}><h1>LOADING ... </h1></div> 
  
@@ -113,7 +117,7 @@ const Main = () => {
       </div>
       <div className={style.search}>
         <div>
-        <input type="text"  placeholder='ess'/> 
+        <input type="text"  placeholder='search...'  onChange={(e)=>{setSearch(e.target.value)} }value={search} /> 
         <img src={loop} alt="loop" />
         </div>
       </div>
