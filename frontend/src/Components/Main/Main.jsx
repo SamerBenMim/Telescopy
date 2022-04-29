@@ -4,7 +4,7 @@ import Cards from '../Cards/Cards'
 import axios from 'axios'
 import { api } from "../../Api/config"
 import arrow from '../../assets/left-arrow.png'
-
+import loop from '../../assets/loop.png'
 const Main = () => {
   const [telescops, setTelescops] = useState(null)
   const [page, setPage] = useState(1)
@@ -99,6 +99,7 @@ const Main = () => {
  
   else return (
     <div className={style.container} >
+    <div className={style.content}>
       <div className={style.features} id='features'>
       <div style={{color:"black",marginRight:'60px'}}> NUMBER OF TELESCOPS :  <span style={{fontSize:"20px",fontWeight:"500"}}>{nombreProduits}  </span> </div>
 
@@ -110,7 +111,13 @@ const Main = () => {
        src="https://cdn-icons-png.flaticon.com/512/159/159800.png" style={{width:"40px",height:"30px" , cursor: 'pointer'}} alt="sort"  />
     
       </div>
-
+      <div className={style.search}>
+        <div>
+        <input type="text"  placeholder='ess'/> 
+        <img src={loop} alt="loop" />
+        </div>
+      </div>
+    </div>
     <div className={style.wrap} style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
     <br/>
 

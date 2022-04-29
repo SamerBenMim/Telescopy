@@ -14,11 +14,41 @@
  width: 25px;
 }
 .features{
-    height: 150px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search div{
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+.search img{
+    width: 25px;
+    position: absolute;
+    right: 9px;
+}
+.search input{
+    font-size: 17px;
+    height: 30px;
+    padding: 15px;
+
+}
+.content{
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}  
+
 .pagination span {
     margin: 10px;
     cursor: pointer;
