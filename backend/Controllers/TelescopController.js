@@ -15,7 +15,6 @@ exports.addTelescop =  catchAsync( async(req,res,next)=>{
 //READ (methode Get)
 exports.getAllTelescops = catchAsync(async (req,res,next)=>{
     const totalNumber = await (await Telescop.find({deleted:false})).length
-    console.log(totalNumber)
     const features = new APIFeatures(Telescop.find({deleted:false}),req.query)
     .sort()
     .filter()
@@ -34,7 +33,6 @@ exports.getAllTelescops = catchAsync(async (req,res,next)=>{
 
 exports.getTelescopById =catchAsync( async (req,res,next)=>{ 
       const telescop = await Telescop.findOne({deleted:false,_id:req.params.id })
-      console.log(telescop)
       if(!telescop) return next(new AppError('no telescop found with that ID',404))
       res.status(200).json(
             {status :'success', 

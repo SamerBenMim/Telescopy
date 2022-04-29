@@ -2,6 +2,7 @@
     width: 295px;
     height: 450px;
     background-color: #ebebeb;
+    margin: 10px;
 }
 .cardContainer{
     width: 100%;
@@ -44,6 +45,9 @@
     justify-content: center;
 }
 @media only screen and (max-width: 800px) {
+    .card{
+        margin: unset;
+    }
     .price{
         margin-right:0px;
     }
@@ -63,6 +67,7 @@ height: 170px;
     .card{
         width: 90%;
         height: 50%;
+        min-height: 281px;
         margin-bottom: 20px;
     }
     .productName , .price{
@@ -71,7 +76,13 @@ height: 170px;
     .stock{
         font-size: 12px;
     }
-
+    .msg{
+        display: none;
+    }
+    .x{
+        font-size: 15px;
+        font-weight: 500;
+    }
    }
    .card span{
        /* font-weight: 800;

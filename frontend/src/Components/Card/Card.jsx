@@ -12,9 +12,9 @@ const Card = ({price,name,quantity,img,id,deleteMe,updateMe}) => {
   
   return (
     <div className={style.card}>
-      <span  style={{marginLeft:"10px"}}onClick={()=>{deleteMe(id)}}>X</span> 
+      <span className={style.x}  style={{marginLeft:"10px"}}onClick={()=>{deleteMe(id)}}>X</span> 
       <span  style={{marginLeft:"10px"}}onClick={()=>{setReadonly(false)}}> <img style={{width:"22px", marginTop:"15px"}} src="https://icon-library.com/images/icon-edit/icon-edit-27.jpg  " alt="edit" /></span> 
-      {!readonly&&<span  style={{marginLeft:"10px"}}onClick={ ()=>{updateMe(id,nom,quantite,prix) ;setReadonly(true)  }  }> <img style={{width:"22px", marginTop:"15px"}} src="https://cdn0.iconfinder.com/data/icons/basic-glyph/1024/upload-512.png" alt="edit" />  <span style={{fontSize:"15px",color:"gray"}}>you know update fields</span></span> }
+      {!readonly&&<span  style={{marginLeft:"10px"}}onClick={ ()=>{updateMe(id,nom,quantite,prix) ;setReadonly(true)  }  }> <img style={{width:"22px", marginTop:"15px"}} src="https://cdn0.iconfinder.com/data/icons/basic-glyph/1024/upload-512.png" alt="edit" />  <span className= {style.msg} style={{fontSize:"15px",color:"gray"}}>you know update fields</span></span> }
         <div className={style.cardContainer}>
           <div className={style.image}>
             <img src={img} alt={name} />

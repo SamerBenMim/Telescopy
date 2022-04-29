@@ -2,12 +2,21 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width:min-content;
 }
 .cards .div{
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+}
+@media only screen and (max-width: 800px) {
+    .cards{
+        width: 100%;
+    }
+    .cards .div{
+
+        flex-wrap: wrap;
+    }
 }

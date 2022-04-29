@@ -55,7 +55,6 @@ const Main = () => {
 
 
   const GetTelescops = ()=>{
-    console.log(sort)
     var query = `/telescops?page=${page}`
     if (sort==1){
       query =`/telescops?page=${page}&sort=price`
@@ -63,12 +62,10 @@ const Main = () => {
     }else if(sort==-1) {
       query =`/telescops?page=${page}&sort=price&decreasing=true`
     }
-    console.log(query)
     axios.get(`${api}${query}`)
     .then(res => {
       if (res.data.status === 'success') { 
         setTelescops(res.data.data.telescops)
-        console.log(res.data.data.telescops)
         setNombreProduits(res.data.number)
       }
       return false 
@@ -79,7 +76,6 @@ const Main = () => {
     });
   }
   const deleteTelescop = (id)=>{
-    console.log(id)
     axios.delete(`${api}/telescops/${id}`)
     .then(res => {
       if (res.data.status === 'success') { 
@@ -99,9 +95,8 @@ const Main = () => {
      GetTelescops()
   }, [page,sort,nombreProduits,err])
 
-  if(!telescops) return true
-  // return <Loader/>
-
+  if(!telescops) return <div style={{width : "100%" , textAlign:"center"}}><h1>LOADING ... </h1></div> 
+ 
   else return (
     <div className={style.container} >
       <div className={style.features} id='features'>
@@ -116,7 +111,7 @@ const Main = () => {
     
       </div>
 
-    <div className={style.wrap}>
+    <div className={style.wrap} style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
     <br/>
 
 
