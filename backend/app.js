@@ -7,6 +7,7 @@ const app = express();
 const globalErrorHandler = require("./Middlware/ErrorHandler")
 const cors = require('cors');
 const TelescopRouter = require('./Routes/TelescopRoute')
+app.use(cors())
 
 
     app.use(helmet())
