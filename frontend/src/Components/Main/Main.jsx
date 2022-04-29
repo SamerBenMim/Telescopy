@@ -1,7 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import style from './Main.module.css'
 import Cards from '../Cards/Cards'
-// import { GetTelescops } from '../../Api/api'
 import axios from 'axios'
 import { api } from "../../Api/config"
 import arrow from '../../assets/left-arrow.png'
@@ -37,10 +36,11 @@ const Main = () => {
 
 
   const updateTelescop = (id,name,quantity,price)=>{
-    axios.patch(`${api}/telescops/${id}`,{name,quantity,image,price})
+    axios.patch(`${api}/telescops/${id}`,{name,quantity,price})
     .then(res => {
       if (res.data.status === 'success') { 
         setErr(false)
+        GetTelescops()
       }
       else{
         setErr(true)
@@ -104,7 +104,7 @@ const Main = () => {
 
   else return (
     <div className={style.container} >
-      <div className={style.features}>
+      <div className={style.features} id='features'>
       <div style={{color:"black",marginRight:'60px'}}> NUMBER OF TELESCOPS :  <span style={{fontSize:"20px",fontWeight:"500"}}>{nombreProduits}  </span> </div>
 
         <div style={{color:"black",marginRight:'20px'}}> SORT TELESCOPS </div>
@@ -147,9 +147,9 @@ const Main = () => {
 
 }  
 
-{(telescops.length%4 ==1 && telescops.length>4 )&& <Cards updateTelescop={updateTelescop} deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]}    />}
-{(telescops.length%4 ==2 && telescops.length>4 )&& <Cards updateTelescop={updateTelescop} deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]}  prod2 = {telescops[telescops.length-3]}   />}
-{(telescops.length%4 ==3 && telescops.length>4 )&& <Cards  updateTelescop={updateTelescop}deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-4]} prod2 = {telescops[telescops.length-3]} prod3 = {telescops[telescops.length-2]}    />}
+{(telescops.length%4 ==1 && telescops.length>4 )&& <Cards updateTelescop={updateTelescop} deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-1]}    />}
+{(telescops.length%4 ==2 && telescops.length>4 )&& <Cards updateTelescop={updateTelescop} deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-1]}  prod2 = {telescops[telescops.length-2]}   />}
+{(telescops.length%4 ==3 && telescops.length>4 )&& <Cards  updateTelescop={updateTelescop}deleteTelescop={deleteTelescop} key = {telescops[telescops.length-4]} prod1 = {telescops[telescops.length-1]} prod2 = {telescops[telescops.length-2]} prod3 = {telescops[telescops.length-3]}    />}
             </div>
 
             <div className={style.pagination}>

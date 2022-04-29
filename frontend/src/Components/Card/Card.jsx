@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
-import style from './Card.module.css'
+import React, { useState,useEffect } from 'react';
+import style from './Card.module.css';
+
 const Card = ({price,name,quantity,img,id,deleteMe,updateMe}) => {
   const [nom, setnom] = useState(name)
   const [prix, setprix] = useState(price)
   const [quantite, setquantite] = useState(quantity)
   const [readonly, setReadonly] = useState(true)
+  useEffect(() => {
+
+  }, [readonly,quantite,prix,nom])
+  
   return (
     <div className={style.card}>
       <span  style={{marginLeft:"10px"}}onClick={()=>{deleteMe(id)}}>X</span> 
@@ -17,10 +22,14 @@ const Card = ({price,name,quantity,img,id,deleteMe,updateMe}) => {
           <div className={style.details}>
               <div className={style.wrap}>
                 <div className={style.productName}>
-                        <span><input  required onChange={e=>{setnom(e.target.value); console.log(nom)} } className={style.productName} type="text" value={readonly?name:nom}  readOnly={readonly  } /> </span>
+                        <span><input  required onChange={e=>{setnom(e.target.value); } } className={style.productName} type="text" value={readonly?name:nom}  readOnly={readonly  } /> </span>
                 </div>
                 <div className={style.price}>
-                <span><input  style={{width:"35px"}}onChange={e=>{if(e.target.value>=0)setprix(e.target.value);} } className={style.productName} type="number" value={readonly?price:prix}  readOnly={readonly  } /> </span>
+                <div style={{display:"flex"}}>
+                  <div style={{width:"40px"}}>
+                  < input  style={{width:"100%",textAlign:"end"}}onChange={e=>{if(e.target.value>=0)setprix(e.target.value);} } className={style.productName} type="number" value={readonly?price:prix}  readOnly={readonly  } />
+                  </div>
+                   <div className={style.dolar}>$</div> </div>
 
                 </div>
               </div>

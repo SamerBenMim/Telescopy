@@ -8,10 +8,15 @@ const Intro = () => {
             <div className={style.details}>
                 <h1> Telescopes For All</h1>
                 <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.  when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
+                Telescopy est une application de gestion des telescopes (CRUD) implementée avec React-Js et Express-Js, développée suite à un test technique avec CONFLEDIS                </p>
             </div>
-            <a className={`${style.btn} ${style._btn}`}>
+            <a className={`${style.btn} ${style._btn}`}  onClick={()=>{document.querySelector("#features").scrollIntoView({behavior: "smooth"})}}>
+              <div className={style.trapese}>
+                <div className={style.rectangle}>
+                </div>
+                <div className={style.triangle}> 
+                </div>
+              </div>
                  <span>
                   See More
                 </span>

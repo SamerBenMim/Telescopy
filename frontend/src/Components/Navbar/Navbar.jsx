@@ -6,15 +6,15 @@ const Navbar = () => {
     <div className={style.navbar}>
         <div className={style.options}>
           <MenuButton/>
-          <div className={style.menu}>HELLO</div>
+          <div className={style.menu}>MENU</div>
         </div> 
 
         <div className={style.title}>
         <h1>TELESCOPY</h1>
         </div> 
         <div className={style.info}>
-        <div className={style.menu}>HELLO</div>
-        <div className={style.menu} style={{marginRight:"5rem"}}>HELLO</div>  
+        <div className={style.menu}> CONFLEDIS </div> 
+        <div className={style.menu} style={{marginRight:"5rem"}}> PARIS </div>  
         </div> 
     </div>
   )

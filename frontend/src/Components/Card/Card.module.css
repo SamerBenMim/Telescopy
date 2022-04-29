@@ -15,22 +15,52 @@
 .image img{
     height: 95%;
     width: 95%;
+    /*    height: 190px;*/
 }
 .productName , .price{
     color: black;
     font-size: 19px;
+    width: 70%;
+}
+ .price{
+    color: black;
+    font-size: 19px;
+    width: 30%;
+    margin-right: -25px;
 }
 .wrap{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 .stock{
     font-size: 16px;
 }
+.dolar{
+    font-size: 18px;
+    font-weight: 300;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+}
 @media only screen and (max-width: 800px) {
- 
-    .card{
+    .price{
+        margin-right:0px;
+    }
+    .cardContainer{
+        padding: 5%;
+    }
+    .wrap{width:100%}
+    .image img{
+height: 170px;
 
+    }
+    .dolar{
+        font-size: 15px;
+        font-weight: 200;
+        width: 12px;
+    }
+    .card{
         width: 90%;
         height: 50%;
         margin-bottom: 20px;
@@ -44,8 +74,8 @@
 
    }
    .card span{
-       font-weight: 800;
-       font-size: 20px;
+       /* font-weight: 800;
+       font-size: 20px; */
        color: black;
        cursor: pointer;
    }
@@ -60,8 +90,8 @@ width: 130px;
         border:  none;
         
         }
-        .wrap input:focus-visible{
-            background-color: transparent;
+    .wrap input:focus-visible{
+        background-color: transparent;
             text-decoration: none;
             border:  none;
             outline-width: 0;
@@ -72,16 +102,15 @@ width: 130px;
                     border:  none;
             width: 130px;
                 }
-                .stock input:focus{
-                    background-color: transparent;
-                    text-decoration: none;
-                    border:  none;
-                    
-                    }
-                    .stock input:focus-visible{
-                        background-color: transparent;
-                        text-decoration: none;
-                        border:  none;
-                        outline-width: 0;
+    .stock input:focus{
+    background-color: transparent;
+    text-decoration: none;
+    border:  none;                 
+     }
+  .stock input:focus-visible{
+    background-color: transparent;
+    text-decoration: none;
+    border:  none;
+    outline-width: 0;
                         
-                        }
+    }

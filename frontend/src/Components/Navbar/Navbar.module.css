@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 8rem;
+
 }
 
 .title {
@@ -14,17 +15,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .options{
     display: flex;
     width: 100%;
+    cursor: pointer;
 }
 
 .info{
     display: flex;
     justify-content: end;
     width: 100%;
+    cursor: pointer;
 }
 .menu{
     display: flex;
@@ -35,6 +39,7 @@
     color: black;
     font-size: 1.1rem;
     font-weight: 500;
+    margin-right: 5rem;
 }
 
 @media only screen and (max-width: 500px) {
